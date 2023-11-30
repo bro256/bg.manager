@@ -36,6 +36,14 @@ public class Task {
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int status;
 
+//    @Column(nullable = false, columnDefinition = "integer default 2")
+//    @Enumerated(EnumType.STRING)
+//    private EPriority priority;
+//
+//    @Column(nullable = false, columnDefinition = "integer default 0")
+//    @Enumerated(EnumType.STRING)
+//    private EStatus status;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime created_at;
 
