@@ -38,11 +38,12 @@ public class PasswordEntryController {
         PasswordEntry createdPasswordEntry = passwordEntryService.createPasswordEntry(passwordEntry);
         return ResponseEntity.ok(createdPasswordEntry);
     }
-//
-//    public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
-//        PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
-//        return ResponseEntity.ok(updatedEntry);
-//    }
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
+        PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
+        return ResponseEntity.ok(updatedEntry);
+    }
 //
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {

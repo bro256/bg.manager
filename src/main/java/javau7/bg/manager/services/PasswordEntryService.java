@@ -26,15 +26,18 @@ public class PasswordEntryService {
         this.userRepository = userRepository;
     }
 
+
     public List<PasswordEntry> getAllPasswordEntries() {
         String username = getLoggedInUsername();
         return passwordEntryRepository.findAllByOwnerUsername(username);
     }
 
+
     public PasswordEntry getPasswordEntryById(Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
         return optionalPasswordEntry.orElse(null);
     }
+
 
     public PasswordEntry createPasswordEntry(PasswordEntry passwordEntry) {
         String loggedInUsername = getLoggedInUsername();
@@ -49,6 +52,41 @@ public class PasswordEntryService {
     }
 
 
+    public PasswordEntry updatePasswordEntry(Long id, PasswordEntry updatedPasswordEntry) {
+        Optional<PasswordEntry> optionalExistingEntry = passwordEntryRepository.findById(id);
+
+        if (optionalExistingEntry.isPresent()) {
+            PasswordEntry existingEntry = optionalExistingEntry.get();
+
+            // Check if the logged-in user is the owner of the existing entry
+            String loggedInUsername = getLoggedInUsername();
+//            if (!existingEntry.getOwner().getUsername().equals(loggedInUsername)) {
+//                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
+//                // UnauthorizedOperationException should be a custom exception class you create
+//            }
+
+            Optional<User> optionalOwner = userRepository.findByUsername(loggedInUsername);
+            User owner = optionalOwner.orElseThrow(() -> new NoSuchElementException("User not found with username: " + loggedInUsername));
+            existingEntry.setOwner(owner);
+
+            existingEntry.setTitle(updatedPasswordEntry.getTitle());
+            existingEntry.setUsername(updatedPasswordEntry.getUsername());
+            existingEntry.setEncryptedPassword(updatedPasswordEntry.getEncryptedPassword());
+            existingEntry.setEncryptionIv(updatedPasswordEntry.getEncryptionIv());
+            existingEntry.setAuthTag(updatedPasswordEntry.getAuthTag());
+            existingEntry.setWebsite(updatedPasswordEntry.getWebsite());
+            existingEntry.setInBookmarks(updatedPasswordEntry.isInBookmarks());
+            existingEntry.setInTrash(updatedPasswordEntry.isInTrash());
+
+            // Set the updated_at timestamp
+            existingEntry.setUpdatedAt(LocalDateTime.now());
+
+            return passwordEntryRepository.save(existingEntry);
+        } else {
+            throw new NoSuchElementException("PasswordEntry not found with id: " + id);
+        }
+    }
+
 
 
     private String getLoggedInUsername() {
@@ -57,7 +95,6 @@ public class PasswordEntryService {
         if (principal instanceof UserDetails) {
             return ((UserDetails) principal).getUsername();
         } else {
-            // Handle the case where principal is not an instance of UserDetails
             return null;
         }
     }
