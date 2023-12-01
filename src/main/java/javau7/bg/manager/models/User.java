@@ -32,12 +32,6 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Task> ownerTasks = new HashSet<>();
-
-    @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Task> assigneeTasks = new HashSet<>();
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -93,4 +87,3 @@ public class User {
         this.roles = roles;
     }
 }
-
