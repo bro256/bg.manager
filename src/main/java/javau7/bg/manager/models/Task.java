@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,11 +51,8 @@ public class Task {
     @Column(nullable = false)
     private LocalDateTime updated_at;
 
-    @Column(nullable = false)
-    private boolean is_read;
-
-    @Column(nullable = false)
-    private LocalDateTime read_at;
+//    @Column(nullable = false)
+//    private LocalDateTime read_at = LocalDateTime.of(1970, 1, 1, 0, 0);
 
     public boolean isOverdue() {
         return finish != null && LocalDate.now().isAfter(finish) && status < 2;
@@ -74,8 +72,6 @@ public class Task {
         this.status = status;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.is_read = is_read;
-        this.read_at = read_at;
     }
 
     public Long getId() {
@@ -164,22 +160,6 @@ public class Task {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
-    }
-
-    public boolean isIs_read() {
-        return is_read;
-    }
-
-    public void setIs_read(boolean is_read) {
-        this.is_read = is_read;
-    }
-
-    public LocalDateTime getRead_at() {
-        return read_at;
-    }
-
-    public void setRead_at(LocalDateTime read_at) {
-        this.read_at = read_at;
     }
 
 
