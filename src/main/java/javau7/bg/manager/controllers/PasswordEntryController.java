@@ -1,8 +1,10 @@
 package javau7.bg.manager.controllers;
 
 import javau7.bg.manager.models.PasswordEntry;
+import javau7.bg.manager.services.PasswordEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,20 +33,21 @@ public class PasswordEntryController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PasswordEntry> createPasswordEntry(@RequestBody PasswordEntry passwordEntry) {
         PasswordEntry createdPasswordEntry = passwordEntryService.createPasswordEntry(passwordEntry);
         return ResponseEntity.ok(createdPasswordEntry);
     }
-
-    public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
-        PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
-        return ResponseEntity.ok(updatedEntry);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {
-        passwordEntryService.deletePasswordEntry(id);
-        return ResponseEntity.noContent().build();
-    }
+//
+//    public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
+//        PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
+//        return ResponseEntity.ok(updatedEntry);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {
+//        passwordEntryService.deletePasswordEntry(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 }
