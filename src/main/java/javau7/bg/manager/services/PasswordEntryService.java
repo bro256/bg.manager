@@ -87,6 +87,26 @@ public class PasswordEntryService {
         }
     }
 
+    public void deletePasswordEntry (Long id){
+        Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
+
+        if (optionalPasswordEntry.isPresent()){
+            PasswordEntry passwordEntry = optionalPasswordEntry.get();
+
+            String loggedInUsername = getLoggedInUsername();
+
+            //    if (!existingEntry.getOwner().getUsername().equals(loggedInUsername)) {
+//                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
+//                // UnauthorizedOperationException should be a custom exception class you create
+//            }
+            passwordEntryRepository.delete(passwordEntry);
+
+        } else {
+            throw new NoSuchElementException("PasswordEntry not found with id: " + id);
+        }
+
+    }
+
 
 
     private String getLoggedInUsername() {

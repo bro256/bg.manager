@@ -44,11 +44,11 @@ public class PasswordEntryController {
         PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
         return ResponseEntity.ok(updatedEntry);
     }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {
-//        passwordEntryService.deletePasswordEntry(id);
-//        return ResponseEntity.noContent().build();
-//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {
+        passwordEntryService.deletePasswordEntry(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
