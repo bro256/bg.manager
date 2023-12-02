@@ -1,5 +1,6 @@
 package javau7.bg.manager.services;
 
+import javau7.bg.manager.exceptions.UnauthorizedOperationException;
 import javau7.bg.manager.models.PasswordEntry;
 import javau7.bg.manager.models.User;
 import javau7.bg.manager.repositories.PasswordEntryRepository;
@@ -58,12 +59,12 @@ public class PasswordEntryService {
         if (optionalExistingEntry.isPresent()) {
             PasswordEntry existingEntry = optionalExistingEntry.get();
 
-            // Check if the logged-in user is the owner of the existing entry
             String loggedInUsername = getLoggedInUsername();
-//            if (!existingEntry.getOwner().getUsername().equals(loggedInUsername)) {
-//                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
-//                // UnauthorizedOperationException should be a custom exception class you create
-//            }
+
+            // Check authorization
+            if (!existingEntry.getOwner().getUsername().equals(loggedInUsername)) {
+                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
+            }
 
             Optional<User> optionalOwner = userRepository.findByUsername(loggedInUsername);
             User owner = optionalOwner.orElseThrow(() -> new NoSuchElementException("User not found with username: " + loggedInUsername));
@@ -95,10 +96,10 @@ public class PasswordEntryService {
 
             String loggedInUsername = getLoggedInUsername();
 
-            //    if (!existingEntry.getOwner().getUsername().equals(loggedInUsername)) {
-//                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
-//                // UnauthorizedOperationException should be a custom exception class you create
-//            }
+            // Check authorization
+            if (!passwordEntry.getOwner().getUsername().equals(loggedInUsername)) {
+                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
+            }
             passwordEntryRepository.delete(passwordEntry);
 
         } else {
