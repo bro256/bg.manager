@@ -42,17 +42,17 @@ public class PasswordEntry {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "is_in_bookmarks")
-    private boolean isInBookmarks;
+    @Column(name = "in_bookmarks")
+    private boolean inBookmarks;
 
-    @Column(name = "is_in_trash")
-    private boolean isInTrash;
+    @Column(name = "in_trash")
+    private boolean inTrash;
 
 
     public PasswordEntry() {
     }
 
-    public PasswordEntry(User owner, String title, String username, byte[] encryptedPassword, byte[] encryptionIv, byte[] authTag, String website, LocalDateTime createdAt, LocalDateTime updatedAt, boolean isInBookmarks, boolean isInTrash) {
+    public PasswordEntry(User owner, String title, String username, byte[] encryptedPassword, byte[] encryptionIv, byte[] authTag, String website, LocalDateTime createdAt, LocalDateTime updatedAt, boolean inBookmarks, boolean inTrash) {
         this.owner = owner;
         this.title = title;
         this.username = username;
@@ -62,8 +62,8 @@ public class PasswordEntry {
         this.website = website;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.isInBookmarks = isInBookmarks;
-        this.isInTrash = isInTrash;
+        this.inBookmarks = inBookmarks;
+        this.inTrash = inTrash;
     }
 
     public Long getId() {
@@ -147,19 +147,19 @@ public class PasswordEntry {
     }
 
     public boolean isInBookmarks() {
-        return isInBookmarks;
+        return inBookmarks;
     }
 
     public void setInBookmarks(boolean inBookmarks) {
-        isInBookmarks = inBookmarks;
+        this.inBookmarks = inBookmarks;
     }
 
     public boolean isInTrash() {
-        return isInTrash;
+        return inTrash;
     }
 
     public void setInTrash(boolean inTrash) {
-        isInTrash = inTrash;
+        this.inTrash = inTrash;
     }
 }
 
