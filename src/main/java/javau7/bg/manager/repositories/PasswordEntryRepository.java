@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PasswordEntryRepository extends JpaRepository<PasswordEntry, Long> {
 
-    List<PasswordEntry> findAllByOwnerUsername(String username);
+    List<PasswordEntry> findAllByOwnerUsernameOrderByTitleAsc(String username);
 }

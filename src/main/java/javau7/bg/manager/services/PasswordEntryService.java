@@ -30,7 +30,7 @@ public class PasswordEntryService {
 
     public List<PasswordEntry> getAllPasswordEntries() {
         String username = getLoggedInUsername();
-        return passwordEntryRepository.findAllByOwnerUsername(username);
+        return passwordEntryRepository.findAllByOwnerUsernameOrderByTitleAsc(username);
     }
 
 
