@@ -49,7 +49,7 @@ public class PasswordEntryService {
         passwordEntry.setCreatedAt(LocalDateTime.now());
         passwordEntry.setUpdatedAt(LocalDateTime.now());
 
-        passwordEntry.setInBookmarks(passwordEntry.isInBookmarks());
+        passwordEntry.setInFavorites(passwordEntry.isInFavorites());
         passwordEntry.setInTrash(false);
 
         return passwordEntryRepository.save(passwordEntry);
@@ -79,7 +79,7 @@ public class PasswordEntryService {
             existingEntry.setEncryptionIv(updatedPasswordEntry.getEncryptionIv());
             existingEntry.setAuthTag(updatedPasswordEntry.getAuthTag());
             existingEntry.setWebsite(updatedPasswordEntry.getWebsite());
-            existingEntry.setInBookmarks(updatedPasswordEntry.isInBookmarks());
+            existingEntry.setInFavorites(updatedPasswordEntry.isInFavorites());
             existingEntry.setInTrash(updatedPasswordEntry.isInTrash());
 
             // Set the updated_at timestamp

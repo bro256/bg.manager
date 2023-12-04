@@ -42,8 +42,8 @@ public class PasswordEntry {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "in_bookmarks")
-    private boolean inBookmarks;
+    @Column(name = "in_favorites")
+    private boolean inFavorites;
 
     @Column(name = "in_trash")
     private boolean inTrash;
@@ -52,7 +52,7 @@ public class PasswordEntry {
     public PasswordEntry() {
     }
 
-    public PasswordEntry(User owner, String title, String username, byte[] encryptedPassword, byte[] encryptionIv, byte[] authTag, String website, LocalDateTime createdAt, LocalDateTime updatedAt, boolean inBookmarks, boolean inTrash) {
+    public PasswordEntry(User owner, String title, String username, byte[] encryptedPassword, byte[] encryptionIv, byte[] authTag, String website, LocalDateTime createdAt, LocalDateTime updatedAt, boolean inFavorites, boolean inTrash) {
         this.owner = owner;
         this.title = title;
         this.username = username;
@@ -62,7 +62,7 @@ public class PasswordEntry {
         this.website = website;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.inBookmarks = inBookmarks;
+        this.inFavorites = inFavorites;
         this.inTrash = inTrash;
     }
 
@@ -146,12 +146,12 @@ public class PasswordEntry {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isInBookmarks() {
-        return inBookmarks;
+    public boolean isInFavorites() {
+        return inFavorites;
     }
 
-    public void setInBookmarks(boolean inBookmarks) {
-        this.inBookmarks = inBookmarks;
+    public void setInFavorites(boolean inFavorites) {
+        this.inFavorites = inFavorites;
     }
 
     public boolean isInTrash() {
