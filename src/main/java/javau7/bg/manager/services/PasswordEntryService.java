@@ -49,6 +49,9 @@ public class PasswordEntryService {
         passwordEntry.setCreatedAt(LocalDateTime.now());
         passwordEntry.setUpdatedAt(LocalDateTime.now());
 
+        passwordEntry.setInBookmarks(passwordEntry.isInBookmarks());
+        passwordEntry.setInTrash(false);
+
         return passwordEntryRepository.save(passwordEntry);
     }
 
