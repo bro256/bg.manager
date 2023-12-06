@@ -1,6 +1,6 @@
-#Java Spring based online password manager
+# Java Spring based online password manager
 
-##Cryptography
+## Cryptography
 ### Key derivation function
 - PBKDF2 (PBKDF2WithHmacSHA256)
 - Iterations: 600 000 (2023 OWASP recommendation)
