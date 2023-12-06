@@ -24,7 +24,7 @@ public class PasswordUtils {
 
     public static byte[] deriveKey(char[] password, byte[] salt){
         try{
-            int iterations = 10000;
+            int iterations = 600000;
             int keyLength = 256;
             PBEKeySpec keySpec = new PBEKeySpec(password, salt, iterations, keyLength);
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
