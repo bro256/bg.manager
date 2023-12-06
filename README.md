@@ -1,8 +1,16 @@
-# Java Spring based online password manager
+# Java Spring based password manager API
 
 ## About
-Password manager designed to help you keep your online accounts safe and easily accessible.
+Project is still in progress!
+
+Password manager API designed to help you keep your online accounts safe and easily accessible.
 Securely manage and protect your passwords online with online password manager.
+
+This is Java Spring backend API.
+
+Frontend application is made with JavaScript and React : [Link](https://)
+
+
 ## Cryptography
 ### Key derivation function
 - PBKDF2 (PBKDF2WithHmacSHA256)
