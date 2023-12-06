@@ -1,5 +1,7 @@
 package javau7.bg.manager.cryptography;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -18,5 +20,18 @@ public class PasswordUtils {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error generating salt from username", e);
         }
+    }
+
+    public static byte[] deriveKey(char[] password, byte[] salt){
+        try{
+            int iterations = 10000;
+            int keyLength = 256;
+            PBEKeySpec keySpec = new PBEKeySpec(password, salt, iterations, keyLength);
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+            return keyFactory.generateSecret(keySpec).getEncoded();
+        } catch (Exception e) {
+            throw new RuntimeException("Error deriving key", e);
+        }
+
     }
 }
