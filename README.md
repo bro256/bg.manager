@@ -6,9 +6,9 @@ Project is still in progress!
 Password manager API designed to help you keep your online accounts safe and easily accessible.
 Securely manage and protect your passwords online with online password manager.
 
-This is Java Spring backend API.
-
-Frontend application is made with JavaScript and React : [Link](https://)
+- This project is Java Spring backend API.
+- Database used in project: MySQL. 
+- Frontend application is made with JavaScript and React : [Link](https://)
 
 
 ## Cryptography
