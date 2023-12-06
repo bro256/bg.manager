@@ -29,10 +29,6 @@ public class PasswordEntry {
     @Column(name = "encryption_iv", length = 32)
     private byte[] encryptionIv;
 
-    @Lob
-    @Column(name = "auth_tag", length = 16)
-    private byte[] authTag;
-
     @Column(name = "website", length = 250)
     private String website;
 
@@ -58,7 +54,6 @@ public class PasswordEntry {
         this.username = username;
         this.encryptedPassword = encryptedPassword;
         this.encryptionIv = encryptionIv;
-        this.authTag = authTag;
         this.website = website;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -114,13 +109,6 @@ public class PasswordEntry {
         this.encryptionIv = encryptionIv;
     }
 
-    public byte[] getAuthTag() {
-        return authTag;
-    }
-
-    public void setAuthTag(byte[] authTag) {
-        this.authTag = authTag;
-    }
 
     public String getWebsite() {
         return website;

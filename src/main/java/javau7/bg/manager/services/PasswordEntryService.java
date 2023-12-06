@@ -77,7 +77,6 @@ public class PasswordEntryService {
             existingEntry.setUsername(updatedPasswordEntry.getUsername());
             existingEntry.setEncryptedPassword(updatedPasswordEntry.getEncryptedPassword());
             existingEntry.setEncryptionIv(updatedPasswordEntry.getEncryptionIv());
-            existingEntry.setAuthTag(updatedPasswordEntry.getAuthTag());
             existingEntry.setWebsite(updatedPasswordEntry.getWebsite());
             existingEntry.setInFavorites(updatedPasswordEntry.isInFavorites());
             existingEntry.setInTrash(updatedPasswordEntry.isInTrash());
