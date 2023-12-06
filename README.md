@@ -1,5 +1,8 @@
 # Java Spring based online password manager
 
+## About
+Password manager designed to help you keep your online accounts safe and easily accessible.
+Securely manage and protect your passwords online with online password manager.
 ## Cryptography
 ### Key derivation function
 - PBKDF2 (PBKDF2WithHmacSHA256)
