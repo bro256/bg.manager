@@ -29,7 +29,7 @@ public class PasswordEntry {
     @Column(name = "encryption_iv", length = 32)
     private byte[] encryptionIv;
 
-    @Column(name = "website", length = 250)
+    @Column(name = "website", length = 1000)
     private String website;
 
     @Column(name = "created_at", updatable = false)

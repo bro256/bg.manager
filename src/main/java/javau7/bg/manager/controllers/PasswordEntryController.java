@@ -39,6 +39,12 @@ public class PasswordEntryController {
         return ResponseEntity.ok(passwordEntries);
     }
 
+    @PutMapping("/trash/{id}")
+    public ResponseEntity<PasswordEntry> togglePasswordEntryInTrash(@PathVariable Long id) {
+        PasswordEntry passwordEntry = passwordEntryService.togglePasswordEntryInTrash(id);
+        return ResponseEntity.ok(passwordEntry);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PasswordEntry> getPasswordEntryById(@PathVariable Long id) {
         PasswordEntry passwordEntry = passwordEntryService.getPasswordEntryById(id);

@@ -43,6 +43,12 @@ public class PasswordEntryService {
         return passwordEntryRepository.findAllByOwnerUsernameAndInTrashOrderByTitleAsc(username, true);
     }
 
+    public PasswordEntry togglePasswordEntryInTrash(Long id) {
+        PasswordEntry passwordEntry = getPasswordEntryById(id);
+        passwordEntry.setInTrash(!passwordEntry.isInTrash());
+        return passwordEntryRepository.save(passwordEntry);
+    }
+
 
     public PasswordEntry getPasswordEntryById(Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
