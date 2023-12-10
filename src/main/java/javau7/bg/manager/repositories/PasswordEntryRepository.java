@@ -9,4 +9,7 @@ import java.util.List;
 public interface PasswordEntryRepository extends JpaRepository<PasswordEntry, Long> {
 
     List<PasswordEntry> findAllByOwnerUsernameOrderByTitleAsc(String username);
+    List<PasswordEntry> findAllByOwnerUsernameAndInTrashOrderByTitleAsc(String username, boolean inTrash);
+
+
 }

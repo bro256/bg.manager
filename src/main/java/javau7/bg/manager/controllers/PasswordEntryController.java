@@ -27,6 +27,12 @@ public class PasswordEntryController {
         return ResponseEntity.ok(passwordEntries);
     }
 
+    @GetMapping("/trash")
+    public ResponseEntity<List<PasswordEntry>> getAllPasswordEntriesInTrash() {
+        List<PasswordEntry> passwordEntries = passwordEntryService.getAllPasswordEntriesInTrash();
+        return ResponseEntity.ok(passwordEntries);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PasswordEntry> getPasswordEntryById(@PathVariable Long id) {
         PasswordEntry passwordEntry = passwordEntryService.getPasswordEntryById(id);
