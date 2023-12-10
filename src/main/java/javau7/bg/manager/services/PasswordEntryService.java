@@ -33,6 +33,11 @@ public class PasswordEntryService {
         return passwordEntryRepository.findAllByOwnerUsernameOrderByTitleAsc(username);
     }
 
+    public List<PasswordEntry> getAllPasswordEntriesInFavorites() {
+        String username = getLoggedInUsername();
+        return passwordEntryRepository.findAllByOwnerUsernameAndInFavoritesAndInTrashOrderByTitleAsc(username, true, false);
+    }
+
     public List<PasswordEntry> getAllPasswordEntriesInTrash() {
         String username = getLoggedInUsername();
         return passwordEntryRepository.findAllByOwnerUsernameAndInTrashOrderByTitleAsc(username, true);

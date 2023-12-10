@@ -27,6 +27,12 @@ public class PasswordEntryController {
         return ResponseEntity.ok(passwordEntries);
     }
 
+    @GetMapping("/favorites")
+    public ResponseEntity<List<PasswordEntry>> getAllPasswordEntriesInFavorites() {
+        List<PasswordEntry> passwordEntries = passwordEntryService.getAllPasswordEntriesInFavorites();
+        return ResponseEntity.ok(passwordEntries);
+    }
+
     @GetMapping("/trash")
     public ResponseEntity<List<PasswordEntry>> getAllPasswordEntriesInTrash() {
         List<PasswordEntry> passwordEntries = passwordEntryService.getAllPasswordEntriesInTrash();
