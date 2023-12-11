@@ -10,6 +10,12 @@ Securely manage and protect your passwords online with online password manager.
 - Database used in project: MySQL. 
 - Frontend application is made with JavaScript and React : [Link](https://)
 
+## Features
+- **User Registration and Authentication.** Allows users to create an account and authenticate themselves securely.
+- **Password Storage and Organization.** Provides the ability for users to store and organize their passwords securely in the password manager.
+- **Password Generation.** Offers an advanced password generation feature that generates strong and unique passwords for users.
+- **Encryption and Data Security.** Encrypts stored passwords to protect them from unauthorized access.
+- **Search.** Enables users to search their password entries.
 
 ## Cryptography
 ### Key derivation function
