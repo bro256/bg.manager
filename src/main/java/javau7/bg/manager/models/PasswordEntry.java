@@ -22,7 +22,7 @@ public class PasswordEntry {
     private String username;
 
     @Lob
-    @Column(name = "encrypted_password", length = 50)
+    @Column(name = "encrypted_password", length = 128)
     private byte[] encryptedPassword;
 
     @Lob
@@ -44,11 +44,15 @@ public class PasswordEntry {
     @Column(name = "in_trash")
     private boolean inTrash;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = true)
+    private Category category;
+
 
     public PasswordEntry() {
     }
 
-    public PasswordEntry(User owner, String title, String username, byte[] encryptedPassword, byte[] encryptionIv, byte[] authTag, String website, LocalDateTime createdAt, LocalDateTime updatedAt, boolean inFavorites, boolean inTrash) {
+    public PasswordEntry(User owner, String title, String username, byte[] encryptedPassword, byte[] encryptionIv, String website, LocalDateTime createdAt, LocalDateTime updatedAt, boolean inFavorites, boolean inTrash, Category category) {
         this.owner = owner;
         this.title = title;
         this.username = username;
@@ -59,6 +63,7 @@ public class PasswordEntry {
         this.updatedAt = updatedAt;
         this.inFavorites = inFavorites;
         this.inTrash = inTrash;
+        this.category = category;
     }
 
     public Long getId() {
@@ -148,6 +153,14 @@ public class PasswordEntry {
 
     public void setInTrash(boolean inTrash) {
         this.inTrash = inTrash;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
 
