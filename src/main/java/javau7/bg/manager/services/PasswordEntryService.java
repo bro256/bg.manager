@@ -96,6 +96,7 @@ public class PasswordEntryService {
             existingEntry.setWebsite(updatedPasswordEntry.getWebsite());
             existingEntry.setInFavorites(updatedPasswordEntry.isInFavorites());
             existingEntry.setInTrash(updatedPasswordEntry.isInTrash());
+            existingEntry.setCategory(updatedPasswordEntry.getCategory());
 
             // Set the updated_at timestamp
             existingEntry.setUpdatedAt(LocalDateTime.now());
