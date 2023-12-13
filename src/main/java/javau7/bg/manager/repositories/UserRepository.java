@@ -1,5 +1,6 @@
 package javau7.bg.manager.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import javau7.bg.manager.models.User;
@@ -14,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
+
+    List<User> findAll();
 }
