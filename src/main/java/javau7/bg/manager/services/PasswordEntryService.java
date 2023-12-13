@@ -129,7 +129,7 @@ public class PasswordEntryService {
 
 
 
-    private String getLoggedInUsername() {
+    public String getLoggedInUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
