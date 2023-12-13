@@ -12,6 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/password-entries")
+@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 public class PasswordEntryController {
 
     private final PasswordEntryService passwordEntryService;
@@ -52,13 +53,11 @@ public class PasswordEntryController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PasswordEntry> createPasswordEntry(@RequestBody PasswordEntry passwordEntry) {
         PasswordEntry createdPasswordEntry = passwordEntryService.createPasswordEntry(passwordEntry);
         return ResponseEntity.ok(createdPasswordEntry);
     }
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
         PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
         return ResponseEntity.ok(updatedEntry);
