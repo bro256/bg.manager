@@ -45,6 +45,7 @@ public class PasswordEntryService {
 
     public PasswordEntry togglePasswordEntryInTrash(Long id) {
         PasswordEntry passwordEntry = getPasswordEntryById(id);
+        checkAuthorization(passwordEntry);
         passwordEntry.setInTrash(!passwordEntry.isInTrash());
         return passwordEntryRepository.save(passwordEntry);
     }
@@ -52,7 +53,13 @@ public class PasswordEntryService {
 
     public PasswordEntry getPasswordEntryById(Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
-        return optionalPasswordEntry.orElse(null);
+        if (optionalPasswordEntry.isPresent()) {
+            PasswordEntry passwordEntry = optionalPasswordEntry.get();
+            checkAuthorization(passwordEntry);
+            return passwordEntry;
+        } else {
+            throw new NoSuchElementException("PasswordEntry not found with id: " + id);
+        }
     }
 
 
@@ -80,10 +87,7 @@ public class PasswordEntryService {
 
             String loggedInUsername = getLoggedInUsername();
 
-            // Check authorization
-            if (!existingEntry.getOwner().getUsername().equals(loggedInUsername)) {
-                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
-            }
+            checkAuthorization(existingEntry);
 
             Optional<User> optionalOwner = userRepository.findByUsername(loggedInUsername);
             User owner = optionalOwner.orElseThrow(() -> new NoSuchElementException("User not found with username: " + loggedInUsername));
@@ -115,16 +119,12 @@ public class PasswordEntryService {
 
             String loggedInUsername = getLoggedInUsername();
 
-            // Check authorization
-            if (!passwordEntry.getOwner().getUsername().equals(loggedInUsername)) {
-                throw new UnauthorizedOperationException("You do not have permission to update this PasswordEntry");
-            }
+            checkAuthorization(passwordEntry);
             passwordEntryRepository.delete(passwordEntry);
 
         } else {
             throw new NoSuchElementException("PasswordEntry not found with id: " + id);
         }
-
     }
 
 
@@ -136,6 +136,14 @@ public class PasswordEntryService {
             return ((UserDetails) principal).getUsername();
         } else {
             return null;
+        }
+    }
+
+
+    private void checkAuthorization(PasswordEntry passwordEntry) {
+        String loggedInUsername = getLoggedInUsername();
+        if (!passwordEntry.getOwner().getUsername().equals(loggedInUsername)) {
+            throw new UnauthorizedOperationException("You do not have permission to perform this action on PasswordEntry with id: " + passwordEntry.getId());
         }
     }
 
