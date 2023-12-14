@@ -11,7 +11,7 @@ public class PasswordEntry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id", nullable = true)
     private User owner;
 
@@ -22,7 +22,7 @@ public class PasswordEntry {
     private String username;
 
     @Lob
-    @Column(name = "encrypted_password", length = 128)
+    @Column(name = "encrypted_password", length = 150)
     private byte[] encryptedPassword;
 
     @Lob
