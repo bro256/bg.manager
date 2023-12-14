@@ -6,6 +6,17 @@ Project is still in progress!
 Password manager API designed to help you keep your online accounts safe and easily accessible.
 Securely manage and protect your passwords online with online password manager.
 
+## Zero-Knowledge Password Management
+
+This password manager operates on the principle of zero-knowledge, ensuring that all sensitive cryptographic operations take place exclusively on the user's side. This means that we, as the service provider, have no access to your plaintext passwords or any confidential information. Your data remains fully encrypted and private, and only you have the keys to unlock it.
+
+### How It Works
+
+- **Client-Side Encryption:** All cryptographic processes, including encryption and decryption of your passwords, occur locally on your device. Your plaintext data is transformed into its encrypted form before it ever leaves your device, ensuring that only encrypted data is transmitted to server.
+- **Zero-Knowledge Architecture:** We employ a zero-knowledge architecture, meaning that even if our servers were compromised, the encrypted data stored there would be meaningless without your unique encryption keys. Your key is never transmitted or stored on server.
+- **End-to-End Security:** Your password and encryption keys are known only to you, and they are never shared with or stored in server side. This ensures that your sensitive information remains confidential and secure.
+
+## API
 - This project is Java Spring backend API.
 - Database used in project: MySQL. 
 - Frontend application is made with JavaScript and React : [Link](https://github.com/bro256/bg.manager.ui)
