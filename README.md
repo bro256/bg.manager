@@ -47,6 +47,31 @@ This password manager operates on the principle of zero-knowledge, ensuring that
 - **Initialization vector (IV):** 96 bits, random, different for every record
 - Implemented in front end app in accordance with official Crypto-js package documentation
 
+## Installation
+
+### Prerequisites
+- Java Development Kit (JDK) version 11 or higher
+- Apache Maven
+- MySQL database
+
+### Steps
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/bro256/bg.manager.git
+   cd your-repository
+   
+2. **Configure Database:**
+- Create a MySQL database and update the application.properties file with your database configuration. 
+
+3. **Build and Run the Application:**
+    ```bash
+   mvn clean install
+   java -jar target/bg.manager.jar
+
+4. **Access the API:**
+- Once the application is running, you can access the API at http://localhost:8080/api.
+
 ## Contributing
 Thank you for considering contributing to our project! We welcome contributions from the community to make our project better. To contribute, please follow these guidelines:
 - Fork the repository and clone it locally.
