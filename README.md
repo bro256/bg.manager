@@ -14,8 +14,11 @@ Securely manage and protect your passwords online with online password manager.
 - **User Registration and Authentication.** Allows users to create an account and authenticate themselves securely.
 - **Password Storage and Organization.** Provides the ability for users to store and organize their passwords securely in the password manager.
 - **Password Generation.** Offers an advanced password generation feature that generates strong and unique passwords for users.
+- **Password Generation.** Offers an advanced password generation feature that generates strong and unique passwords for users.
 - **Encryption and Data Security.** Encrypts stored passwords to protect them from unauthorized access.
+- **Cross-Platform Access.** Lets access passwords from desktops, laptops, and mobile devices.
 - **Search.** Enables users to search their password entries.
+-  **Export passwords** Allows users to export their data in CSV format to be transferred to other password managers.
 
 ## Cryptography
 ### Key derivation function
@@ -32,3 +35,4 @@ Securely manage and protect your passwords online with online password manager.
 - **Block size:** 128 bits
 - **Initialization vector (IV):** 96 bits, random, different for every record
 - Implemented in front end app in accordance with official Crypto-js package
+
