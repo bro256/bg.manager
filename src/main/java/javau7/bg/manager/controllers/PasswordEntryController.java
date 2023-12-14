@@ -22,10 +22,34 @@ public class PasswordEntryController {
         this.passwordEntryService = passwordEntryService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PasswordEntry> getPasswordEntryById(@PathVariable Long id) {
+        PasswordEntry passwordEntry = passwordEntryService.getPasswordEntryById(id);
+        return ResponseEntity.ok(passwordEntry);
+    }
+
     @GetMapping
     public ResponseEntity<List<PasswordEntry>> getAllPasswordEntries() {
         List<PasswordEntry> passwordEntries = passwordEntryService.getAllPasswordEntries();
         return ResponseEntity.ok(passwordEntries);
+    }
+
+    @PostMapping
+    public ResponseEntity<PasswordEntry> createPasswordEntry(@RequestBody PasswordEntry passwordEntry) {
+        PasswordEntry createdPasswordEntry = passwordEntryService.createPasswordEntry(passwordEntry);
+        return ResponseEntity.ok(createdPasswordEntry);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
+        PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
+        return ResponseEntity.ok(updatedEntry);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {
+        passwordEntryService.deletePasswordEntry(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/favorites")
@@ -45,28 +69,4 @@ public class PasswordEntryController {
         PasswordEntry passwordEntry = passwordEntryService.togglePasswordEntryInTrash(id);
         return ResponseEntity.ok(passwordEntry);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<PasswordEntry> getPasswordEntryById(@PathVariable Long id) {
-        PasswordEntry passwordEntry = passwordEntryService.getPasswordEntryById(id);
-        return ResponseEntity.ok(passwordEntry);
-    }
-
-    @PostMapping
-    public ResponseEntity<PasswordEntry> createPasswordEntry(@RequestBody PasswordEntry passwordEntry) {
-        PasswordEntry createdPasswordEntry = passwordEntryService.createPasswordEntry(passwordEntry);
-        return ResponseEntity.ok(createdPasswordEntry);
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<PasswordEntry> updatePasswordEntry(@PathVariable Long id, @RequestBody PasswordEntry updatedPasswordEntry) {
-        PasswordEntry updatedEntry = passwordEntryService.updatePasswordEntry(id, updatedPasswordEntry);
-        return ResponseEntity.ok(updatedEntry);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePasswordEntry(@PathVariable Long id) {
-        passwordEntryService.deletePasswordEntry(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }
