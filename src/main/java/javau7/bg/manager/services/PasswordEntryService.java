@@ -15,11 +15,19 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+
+/**
+ * Service class for managing password entries.
+ */
 @Service
 public class PasswordEntryService {
     private final PasswordEntryRepository passwordEntryRepository;
     private final UserRepository userRepository;
 
+
+    /**
+     * Constructor for PasswordEntryService.
+     */
     @Autowired
     public PasswordEntryService(PasswordEntryRepository passwordEntryRepository,
                                 UserRepository userRepository) {
@@ -28,21 +36,36 @@ public class PasswordEntryService {
     }
 
 
+    /**
+     * Get all password entries for the currently logged-in user.
+     */
     public List<PasswordEntry> getAllPasswordEntries() {
         String username = getLoggedInUsername();
         return passwordEntryRepository.findAllByOwnerUsernameOrderByTitleAsc(username);
     }
 
+
+    /**
+     * Get all password entries marked as favorites for the currently logged-in user.
+     */
     public List<PasswordEntry> getAllPasswordEntriesInFavorites() {
         String username = getLoggedInUsername();
         return passwordEntryRepository.findAllByOwnerUsernameAndInFavoritesAndInTrashOrderByTitleAsc(username, true, false);
     }
 
+
+    /**
+     * Get all password entries in the trash for the currently logged-in user.
+     */
     public List<PasswordEntry> getAllPasswordEntriesInTrash() {
         String username = getLoggedInUsername();
         return passwordEntryRepository.findAllByOwnerUsernameAndInTrashOrderByTitleAsc(username, true);
     }
 
+
+    /**
+     * Toggle a password entry's trash status.
+     */
     public PasswordEntry togglePasswordEntryInTrash(Long id) {
         PasswordEntry passwordEntry = getPasswordEntryById(id);
         checkAuthorization(passwordEntry);
@@ -51,6 +74,9 @@ public class PasswordEntryService {
     }
 
 
+    /**
+     * Get a password entry by id.
+     */
     public PasswordEntry getPasswordEntryById(Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
         if (optionalPasswordEntry.isPresent()) {
@@ -63,6 +89,9 @@ public class PasswordEntryService {
     }
 
 
+    /**
+     * Create password entry.
+     */
     public PasswordEntry createPasswordEntry(PasswordEntry passwordEntry) {
         String loggedInUsername = getLoggedInUsername();
         Optional<User> optionalOwner = userRepository.findByUsername(loggedInUsername);
@@ -79,6 +108,9 @@ public class PasswordEntryService {
     }
 
 
+    /**
+     * Update password entry.
+     */
     public PasswordEntry updatePasswordEntry(Long id, PasswordEntry updatedPasswordEntry) {
         Optional<PasswordEntry> optionalExistingEntry = passwordEntryRepository.findById(id);
 
@@ -111,6 +143,10 @@ public class PasswordEntryService {
         }
     }
 
+
+    /**
+     * Delete password entry.
+     */
     public void deletePasswordEntry (Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
 
@@ -128,7 +164,9 @@ public class PasswordEntryService {
     }
 
 
-
+    /**
+     * Get the currently logged-in user's username.
+     */
     public String getLoggedInUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -140,11 +178,13 @@ public class PasswordEntryService {
     }
 
 
+    /**
+     * Check if the currently logged-in user is authorized to perform an operation on a password entry.
+     */
     private void checkAuthorization(PasswordEntry passwordEntry) {
         String loggedInUsername = getLoggedInUsername();
         if (!passwordEntry.getOwner().getUsername().equals(loggedInUsername)) {
             throw new UnauthorizedOperationException("You do not have permission to perform this action on PasswordEntry with id: " + passwordEntry.getId());
         }
     }
-
 }
