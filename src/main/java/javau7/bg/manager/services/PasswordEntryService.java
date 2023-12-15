@@ -27,6 +27,9 @@ public class PasswordEntryService {
 
     /**
      * Constructor for PasswordEntryService.
+     *
+     * @param passwordEntryRepository The repository for password entries.
+     * @param userRepository          The repository for users.
      */
     @Autowired
     public PasswordEntryService(PasswordEntryRepository passwordEntryRepository,
@@ -38,6 +41,8 @@ public class PasswordEntryService {
 
     /**
      * Get all password entries for the currently logged-in user.
+     *
+     * @return List of password entries.
      */
     public List<PasswordEntry> getAllPasswordEntries() {
         String username = getLoggedInUsername();
@@ -47,6 +52,8 @@ public class PasswordEntryService {
 
     /**
      * Get all password entries marked as favorites for the currently logged-in user.
+     *
+     * @return List of favorite password entries.
      */
     public List<PasswordEntry> getAllPasswordEntriesInFavorites() {
         String username = getLoggedInUsername();
@@ -56,6 +63,8 @@ public class PasswordEntryService {
 
     /**
      * Get all password entries in the trash for the currently logged-in user.
+     *
+     * @return List of password entries in the trash.
      */
     public List<PasswordEntry> getAllPasswordEntriesInTrash() {
         String username = getLoggedInUsername();
@@ -65,6 +74,9 @@ public class PasswordEntryService {
 
     /**
      * Toggle a password entry's trash status.
+     *
+     * @param id The ID of the password entry to toggle.
+     * @return The updated password entry.
      */
     public PasswordEntry togglePasswordEntryInTrash(Long id) {
         PasswordEntry passwordEntry = getPasswordEntryById(id);
@@ -76,6 +88,9 @@ public class PasswordEntryService {
 
     /**
      * Get a password entry by id.
+     *
+     * @param id The ID of the password entry to get.
+     * @return The password entry with id.
      */
     public PasswordEntry getPasswordEntryById(Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
@@ -91,6 +106,8 @@ public class PasswordEntryService {
 
     /**
      * Create password entry.
+     *
+     * @return Created password entry.
      */
     public PasswordEntry createPasswordEntry(PasswordEntry passwordEntry) {
         String loggedInUsername = getLoggedInUsername();
@@ -110,6 +127,9 @@ public class PasswordEntryService {
 
     /**
      * Update password entry.
+     *
+     * @param id The ID of the password entry to edit.
+     * @return The updated password entry.
      */
     public PasswordEntry updatePasswordEntry(Long id, PasswordEntry updatedPasswordEntry) {
         Optional<PasswordEntry> optionalExistingEntry = passwordEntryRepository.findById(id);
@@ -146,6 +166,8 @@ public class PasswordEntryService {
 
     /**
      * Delete password entry.
+     *
+     * @param id The ID of the password entry to delete.
      */
     public void deletePasswordEntry (Long id){
         Optional<PasswordEntry> optionalPasswordEntry = passwordEntryRepository.findById(id);
@@ -166,6 +188,8 @@ public class PasswordEntryService {
 
     /**
      * Get the currently logged-in user's username.
+     *
+     * @return The username of the logged-in user.
      */
     public String getLoggedInUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -180,6 +204,9 @@ public class PasswordEntryService {
 
     /**
      * Check if the currently logged-in user is authorized to perform an operation on a password entry.
+     *
+     * @param passwordEntry The password entry to check authorization for.
+     * @throws UnauthorizedOperationException If the user is not authorized.
      */
     private void checkAuthorization(PasswordEntry passwordEntry) {
         String loggedInUsername = getLoggedInUsername();
