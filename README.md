@@ -32,6 +32,10 @@ This password manager operates on the principle of zero-knowledge, ensuring that
 -  **Export passwords** Allows users to export their data in CSV format to be transferred to other password managers.
 
 ## Cryptography
+
+### Authentication
+- **Password-hashing function:** bcrypt
+
 ### Key derivation function
 - **PBKDF2 (PBKDF2WithHmacSHA256)**
 - **Iterations:** 100 000
@@ -44,14 +48,14 @@ This password manager operates on the principle of zero-knowledge, ensuring that
 - **Key length:** 256 bits
 - **Mode:** CBC (Cipher Block Chaining)
 - **Block size:** 128 bits
-- **Initialization vector (IV):** 96 bits, random, different for every record
-- Implemented in front end app in accordance with official Crypto-js package documentation
+- **Initialization vector (IV):** 128 bits, random, different for every record
+- Implemented in front end app in accordance with official **Crypto-js** package documentation
 
 ## Installation
 
 ### Prerequisites
-- Java Development Kit (JDK) version 11 or higher
-- Apache Maven
+- Java Development Kit (JDK)
+- Maven
 - MySQL database
 
 ### Steps
