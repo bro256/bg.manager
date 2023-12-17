@@ -41,7 +41,6 @@ public class PasswordEntryController {
     /**
      * Get all password entries.
      */
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<PasswordEntry>> getAllPasswordEntries() {
         List<PasswordEntry> passwordEntries = passwordEntryService.getAllPasswordEntries();

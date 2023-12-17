@@ -21,7 +21,9 @@ import javau7.bg.manager.security.jwt.AuthEntryPointJwt;
 import javau7.bg.manager.security.jwt.AuthTokenFilter;
 import javau7.bg.manager.security.services.UserDetailsServiceImpl;
 
-
+/**
+ * Responsible for setting up authentication and authorization mechanisms.
+ */
 @Configuration
 @EnableMethodSecurity
 // (securedEnabled = true,

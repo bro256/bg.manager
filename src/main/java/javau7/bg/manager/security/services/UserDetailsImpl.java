@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javau7.bg.manager.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Encapsulates user details and roles, allowing Spring Security to perform authentication and authorization checks based on the provided user information.
+ */
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 

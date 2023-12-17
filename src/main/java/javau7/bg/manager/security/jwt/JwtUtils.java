@@ -14,6 +14,10 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+
+/**
+ *  Handles the generation, validation, and extraction of JSON Web Tokens (JWTs) used for authentication
+ */
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);

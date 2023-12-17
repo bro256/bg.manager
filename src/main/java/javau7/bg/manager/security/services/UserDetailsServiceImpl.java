@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javau7.bg.manager.models.User;
 import javau7.bg.manager.repositories.UserRepository;
 
+/**
+ * Responsible for loading user details from the database based on the provided username.
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired

@@ -19,6 +19,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javau7.bg.manager.security.services.UserDetailsServiceImpl;
 
+/**
+ * Intercept incoming HTTP requests, extract the JWT (JSON Web Token) from the Authorization header, validate the token,
+ * and set the user authentication details in the Spring Security context if the token is valid.
+ */
 public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
