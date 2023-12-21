@@ -84,6 +84,15 @@ public class PasswordEntryController {
     }
 
     /**
+     * Toggle a password in favorites
+     */
+    @GetMapping("favorites/{id}")
+    public ResponseEntity<PasswordEntry> togglePasswordEntryInFavorites(@PathVariable Long id) {
+        PasswordEntry passwordEntry = passwordEntryService.togglePasswordEntryInFavorites(id);
+        return ResponseEntity.ok(passwordEntry);
+    }
+
+    /**
      * Get all password entries in trash.
      */
     @GetMapping("/trash")

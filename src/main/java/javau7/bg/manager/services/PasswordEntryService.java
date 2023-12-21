@@ -85,6 +85,19 @@ public class PasswordEntryService {
         return passwordEntryRepository.save(passwordEntry);
     }
 
+    /**
+     * Toggle a password entry's favorites status.
+     *
+     * @param id The ID of the password entry to toggle.
+     * @return The updated password entry.
+     */
+    public PasswordEntry togglePasswordEntryInFavorites(Long id){
+        PasswordEntry passwordEntry = getPasswordEntryById(id);
+        checkAuthorization(passwordEntry);
+        passwordEntry.setInFavorites(!passwordEntry.isInFavorites());
+        return passwordEntryRepository.save(passwordEntry);
+    }
+
 
     /**
      * Get a password entry by id.
