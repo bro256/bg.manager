@@ -32,6 +32,7 @@ This password manager operates on the principle of zero-knowledge, ensuring that
 -  **Export passwords** Allows users to export their data in CSV format to be transferred to other password managers.
 
 ## Cryptography
+Cryptography is implemented in frontend app.
 
 ### Authentication
 - **Password-hashing function:** bcrypt
